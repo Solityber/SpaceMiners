@@ -1,6 +1,6 @@
-package SpaceMiner.Pelijuttuja.asscript
+package Pelijuttuja.asscript
 {
-	import SpaceMiner.Pelijuttuja.asscript.poistu;
+	import Pelijuttuja.asscript.poistu;
 	
 	import flash.display.MovieClip;
 	import flash.display.Stage;

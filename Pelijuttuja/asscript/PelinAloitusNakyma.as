@@ -1,9 +1,9 @@
-package SpaceMiner.Pelijuttuja.asscript
+package Pelijuttuja.asscript
 {
-	import SpaceMiner.Pelijuttuja.asscript.Engine;
-	import SpaceMiner.Pelijuttuja.asscript.PelinAloitusPainike;
-	import SpaceMiner.Pelijuttuja.asscript.PelinOhjeetPainike;
-	import SpaceMiner.Pelijuttuja.asscript.poistu;
+	import Pelijuttuja.asscript.Engine;
+	import Pelijuttuja.asscript.PelinAloitusPainike;
+	import Pelijuttuja.asscript.PelinOhjeetPainike;
+	import Pelijuttuja.asscript.poistu;
 	
 	
 	import flash.display.MovieClip;

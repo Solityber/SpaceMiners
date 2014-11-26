@@ -1,4 +1,4 @@
-package SpaceMiner.Pelijuttuja.asscript
+package Pelijuttuja.asscript
 {
 	//list of our imports these are classes we need in order to
 	//run our application.

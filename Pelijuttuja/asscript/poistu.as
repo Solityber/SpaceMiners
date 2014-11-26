@@ -2,9 +2,9 @@ package Pelijuttuja.asscript
 {
 	import flash.display.MovieClip;
 	
-	public class PelinAlus extends MovieClip
+	public class poistu extends MovieClip
 	{
-		public function PelinAlus()
+		public function poistu()
 		{
 			super();
 		}

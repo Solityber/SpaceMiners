@@ -1,4 +1,4 @@
-package SpaceMiner.Pelijuttuja.asscript
+package Pelijuttuja.asscript
 {
 	import flash.display.MovieClip;
 	import flash.display.Stage;
