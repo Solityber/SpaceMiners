@@ -9,6 +9,8 @@ package Pelijuttuja.asscript
 	public class Kaivuualus extends MovieClip
 	{
 		private var myStage:Stage;
+		private var vy:int = 0;
+		private var maxSpeed:int = 30;
 		
 		private var liikeLeft:Boolean = false;
 		private var liikeRight:Boolean = false;
@@ -26,20 +28,47 @@ package Pelijuttuja.asscript
 		
 		protected function gameloop(event:Event):void
 		{
-			if (liikeLeft||liikeRight)
+			if (liikeDown)
+			{
+				if(currentLabel !="Drill")
+					gotoAndPlay("Drill");
+			}
+			else if (liikeUp)
+			{
+				if(currentLabel != "fly")
+					gotoAndPlay("fly");
+			}
+			
+			else if (liikeLeft||liikeRight)
 			{
 				if(currentLabel != "move")
 					gotoAndPlay("move");
 			}
+			
 			else
 			{
 				gotoAndPlay("stop");
 			}
 			
+			
 			if(liikeUp == true)
-				if (y > 0+this.height/2)
-				y -= 2
-					
+			{
+				if (y > 0+this.height/2 && y < myStage.stageHeight)
+				{
+					vy -= 2; 
+				}
+			}	
+			else
+			{
+				if (y < myStage.stageHeight-this.height/2 && y > 0+this.height/2)	
+				{
+					vy += 2;
+				}
+				else
+				{
+					vy = 0;
+				}
+			}		
 			if(liikeDown == true)
 				if (y < myStage.stageHeight-this.height/2)
 				y += 2
@@ -51,6 +80,15 @@ package Pelijuttuja.asscript
 			if(liikeRight == true)
 				if (x < myStage.stageWidth-this.width/2)
 				x += 2
+					
+			if (vy > maxSpeed*1.2)
+				vy = maxSpeed*1.2;
+			
+			else if (vy < -maxSpeed*0.8)
+					 vy = -maxSpeed*0.8;
+					
+					
+			y += vy*0.1;
 		}
 
 		protected function onKeyUp(event:KeyboardEvent):void
