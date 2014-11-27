@@ -3,7 +3,6 @@ package Pelijuttuja.asscript
 	import Pelijuttuja.asscript.Engine;
 	import Pelijuttuja.asscript.PelinAloitusPainike;
 	import Pelijuttuja.asscript.PelinOhjeetPainike;
-	import Pelijuttuja.asscript.poistu;
 	
 	
 	import flash.display.MovieClip;
@@ -18,6 +17,7 @@ package Pelijuttuja.asscript
 			private var poistunappi:poistu = new poistu();
 			private var tausta:PelinTausta = new PelinTausta();
 			
+			
 			public function PelinAloitusNakyma(passedClass:Engine)
 			{
 				
@@ -26,11 +26,10 @@ package Pelijuttuja.asscript
 				this.addChild(tausta);
 				this.addChild(ohjeetpainike);
 				this.addChild(aloitusPainike);
-				this.addChild(poistunappi);
+			
 				
 				aloitusPainike.addEventListener(MouseEvent.CLICK, AloitapelipainikePainettu);
 				ohjeetpainike.addEventListener(MouseEvent.CLICK, OhjeetpelipainikePainettu);
-				poistunappi.addEventListener(MouseEvent.CLICK, poistupelipainikePainettu);
 			}
 			public function AloitapelipainikePainettu(event:MouseEvent)
 			{
@@ -40,11 +39,6 @@ package Pelijuttuja.asscript
 			{
 				mainClass.naytaPelinOhjeet();
 			
-			}
-			public function poistupelipainikePainettu(event:MouseEvent)
-			{
-				trace("in poistupelipainikePainettu");
-				mainClass.poistu();
 			}
 		}
 	}
