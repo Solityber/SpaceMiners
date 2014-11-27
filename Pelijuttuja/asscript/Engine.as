@@ -22,7 +22,7 @@ package Pelijuttuja.asscript
 		
 		public function naytaPelinAloitusNakyma()
 		{
-			aloitus = new PelinAloitusNakyma(this)
+			aloitus = new PelinAloitusNakyma(this, stage)
 			if(peli){
 				removeChild(peli);
 				peli = null;
