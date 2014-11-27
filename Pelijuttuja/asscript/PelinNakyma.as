@@ -11,14 +11,20 @@ package Pelijuttuja.asscript
 		public var mainClass:Engine;
 		private var maatausta:Maatausta = new Maatausta();
 		private var poistunappi:poistu = new poistu();
+		public var kaivuuAlus:Kaivuualus;
+		public var myStage:Stage
 	
 		public function PelinNakyma(stage:Stage, engine:Engine)
 		{
-			super();
 			
 			mainClass = engine;
+			myStage = stage;
+			kaivuuAlus=new Kaivuualus(myStage);
 			this.addChild(maatausta);
 			this.addChild(poistunappi);
+			this.addChild(kaivuuAlus);
+			kaivuuAlus.x = myStage.stageWidth/2;
+			kaivuuAlus.y = myStage.stageHeight/2;
 		
 			poistunappi.addEventListener(MouseEvent.CLICK, poistupelipainikePainettu);
 		}
