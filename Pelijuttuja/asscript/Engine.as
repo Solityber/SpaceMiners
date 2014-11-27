@@ -12,6 +12,7 @@ package Pelijuttuja.asscript
 		public var aloitus:PelinAloitusNakyma;
 		public var peli:PelinNakyma;
 		public var ohje:PelinOhjeet;
+		public var maatausta:Maatausta
 		
 		
 		
@@ -55,8 +56,8 @@ package Pelijuttuja.asscript
 				trace("poista ohje")
 				removeChild(ohje)
 			}
-	
 		}
+		
 	}
 }
 		
