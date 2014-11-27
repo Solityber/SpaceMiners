@@ -11,6 +11,7 @@ package Pelijuttuja.asscript
 		public var mainClass:Engine;
 		private var ohje:Ohjeet = new Ohjeet();
 		private var poistunappi:poistu = new poistu();
+		
 			
 		public function PelinOhjeet(stage:Stage, engine:Engine)
 		{

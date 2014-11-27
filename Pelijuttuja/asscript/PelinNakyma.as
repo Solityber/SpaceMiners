@@ -1,20 +1,40 @@
 package Pelijuttuja.asscript
 {
+	import Pelijuttuja.asscript.poistu;
+	
 	import flash.display.MovieClip;
 	import flash.display.Stage;
+	import flash.events.MouseEvent;
 	
 	public class PelinNakyma extends MovieClip
 	{
-		public function PelinNakyma(stage:Stage)
+		public var mainClass:Engine;
+		private var maatausta:Maatausta = new Maatausta();
+		private var poistunappi:poistu = new poistu();
+	
+		public function PelinNakyma(stage:Stage, engine:Engine)
 		{
-			//create an object of our ship from the Ship class
-			var ourShip:PelinAlus = new PelinAlus();
+			super();
 			
-			//add it to the display list
-			stage.addChild(ourShip);
+			mainClass = engine;
+			this.addChild(maatausta);
+			this.addChild(poistunappi);
+		
+			poistunappi.addEventListener(MouseEvent.CLICK, poistupelipainikePainettu);
+		}
+		public function poistupelipainikePainettu(event:MouseEvent)
+		{
+			trace("poistupelipainikePainettu")
+			poistaMaatausta();
+		}
+		
+		public function poistaMaatausta()
+		{
+			trace("poista maatausta")
 			
-			ourShip.x = stage.stageWidth / 2;
-			ourShip.y = stage.stageHeight / 2;
+			this.removeChild(poistunappi);
+			this.removeChild(maatausta)
+			
 		}
 	}
 }

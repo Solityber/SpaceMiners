@@ -12,6 +12,8 @@ package Pelijuttuja.asscript
 		public var aloitus:PelinAloitusNakyma;
 		public var peli:PelinNakyma;
 		public var ohje:PelinOhjeet;
+		public var maatausta:Maatausta
+		
 		
 		
 		public function Engine()
@@ -32,7 +34,7 @@ package Pelijuttuja.asscript
 		
 		public function naytaPelinNakyma()
 		{
-			peli = new PelinNakyma(stage);
+			peli = new PelinNakyma(stage,this);
 			if(aloitus){
 				trace("pelaa")
 				addChild(peli)
@@ -56,10 +58,6 @@ package Pelijuttuja.asscript
 			}
 		}
 		
-		public function poistu()
-		{
-			fscommand("quit");
-		}
 	}
 }
 		
