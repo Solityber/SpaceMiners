@@ -16,6 +16,7 @@ package Pelijuttuja.asscript
 		private var liikeRight:Boolean = false;
 		private var liikeUp:Boolean = false;
 		private var liikeDown:Boolean = false;
+		private var valintaButton:Boolean = false;
 		
 		public function Kaivuualus(stage:Stage)
 		{
@@ -28,12 +29,8 @@ package Pelijuttuja.asscript
 		
 		protected function gameloop(event:Event):void
 		{
-			if (liikeDown)
-			{
-				if(currentLabel !="Drill")
-					gotoAndPlay("Drill");
-			}
-			else if (liikeUp)
+			
+			if (liikeUp)
 			{
 				if(currentLabel != "fly")
 					gotoAndPlay("fly");
@@ -45,22 +42,38 @@ package Pelijuttuja.asscript
 					gotoAndPlay("move");
 			}
 			
+			else if (liikeDown)
+			{
+				if(currentLabel !="Drill")
+					gotoAndPlay("Drill");
+			}
+			
 			else
 			{
 				gotoAndPlay("stop");
 			}
 			
 			
+			if(y < this.height/2+1)
+				y += 1;
+			if(y > myStage.stageHeight - this.height/2 +5)
+				y -= 2;
+			
 			if(liikeUp == true)
 			{
-				if (y > 0+this.height/2 && y < myStage.stageHeight)
+				if (y > this.height/2 && y < myStage.stageHeight
+)
 				{
-					vy -= 2; 
+					vy -= 2;
+				}
+				else
+				{
+					vy = 0;
 				}
 			}	
 			else
 			{
-				if (y < myStage.stageHeight-this.height/2 && y > 0+this.height/2)	
+				if (y < myStage.stageHeight-this.height/2-myStage.stageHeight/2.86 && y > 0+this.height/2)	
 				{
 					vy += 2;
 				}
@@ -70,8 +83,9 @@ package Pelijuttuja.asscript
 				}
 			}		
 			if(liikeDown == true)
-				if (y < myStage.stageHeight-this.height/2)
-				y += 2
+			{
+				
+			}
 					
 			if(liikeLeft == true)
 				if (x > 0+this.width/2)
@@ -101,6 +115,9 @@ package Pelijuttuja.asscript
 				liikeLeft = false;
 			if(event.keyCode==Keyboard.RIGHT)
 				liikeRight = false;
+			if(event.keyCode==Keyboard.E)
+				trace: ("valintafalse")
+				valintaButton = false;
 		}
 		
 		public function onKeyPress(event:KeyboardEvent) :void
@@ -113,6 +130,9 @@ package Pelijuttuja.asscript
 				liikeLeft = true;
 			if(event.keyCode==Keyboard.RIGHT)
 				liikeRight = true;
+			if(event.keyCode==Keyboard.E)
+				trace: ("valintatrue")
+				valintaButton = true;
 			
 		}
 	}

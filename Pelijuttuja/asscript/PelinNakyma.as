@@ -39,7 +39,9 @@ package Pelijuttuja.asscript
 			trace("poista maatausta")
 			
 			this.removeChild(poistunappi);
-			this.removeChild(maatausta)
+			this.removeChild(maatausta);
+			this.removeChild(kaivuuAlus);
+			
 			
 		}
 	}
