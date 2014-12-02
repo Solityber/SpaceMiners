@@ -31,9 +31,9 @@ package Pelijuttuja.asscript
 			kaivuuAlus.y = myStage.stageHeight/2;
 		
 			poistunappi.addEventListener(MouseEvent.CLICK, poistupelipainikePainettu);
-			laukaisuAlusta.addEventListener(KeyboardEvent.KEY_DOWN, karttaPainettu);
+			laukaisuAlusta.addEventListener(MouseEvent.CLICK, karttaPainettu);
 		}
-		public function karttaPainettu(event:KeyboardEvent)
+		public function karttaPainettu(event:MouseEvent)
 		{
 			trace("karttaPainettu")
 			;
