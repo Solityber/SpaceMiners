@@ -29,6 +29,8 @@ package Pelijuttuja.asscript
 		
 		protected function gameloop(event:Event):void
 		{
+			//if (hitTestObject(myStage.laukaisuAlusta.hitBox))
+			
 			
 			if (liikeUp)
 			{
@@ -116,8 +118,10 @@ package Pelijuttuja.asscript
 			if(event.keyCode==Keyboard.RIGHT)
 				liikeRight = false;
 			if(event.keyCode==Keyboard.E)
-				trace: ("valintafalse")
+			{
+				trace: ("valintafalse");
 				valintaButton = false;
+			}
 		}
 		
 		public function onKeyPress(event:KeyboardEvent) :void
@@ -131,9 +135,10 @@ package Pelijuttuja.asscript
 			if(event.keyCode==Keyboard.RIGHT)
 				liikeRight = true;
 			if(event.keyCode==Keyboard.E)
-				trace: ("valintatrue")
+			{
+				trace: ("valintatrue");
 				valintaButton = true;
-			
+			}
 		}
 	}
 }
