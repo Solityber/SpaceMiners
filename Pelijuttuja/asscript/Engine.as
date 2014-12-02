@@ -4,17 +4,18 @@ package Pelijuttuja.asscript
 	//run our application.
 	import flash.display.MovieClip;
 	import flash.display.Stage;
-	import flash.system.fscommand;
 	import flash.system.*;
+	import flash.system.fscommand;
 	
 	public class Engine extends MovieClip
 	{
 		public var aloitus:PelinAloitusNakyma;
 		public var peli:PelinNakyma;
 		public var ohje:PelinOhjeet;
-		public var maatausta:Maatausta
+		public var maatausta:Maatausta;
+		public var avarauus:Avaruus;
 		
-		
+
 		
 		public function Engine()
 		{
@@ -55,9 +56,9 @@ package Pelijuttuja.asscript
 			if(ohje){
 				trace("poista ohje")
 				removeChild(ohje)
+			
 			}
 		}
-		
 	}
 }
 		

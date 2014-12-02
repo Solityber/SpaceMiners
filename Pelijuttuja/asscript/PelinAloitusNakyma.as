@@ -18,6 +18,7 @@ package Pelijuttuja.asscript
 		public var ohjeetpainike:PelinOhjeetPainike = new PelinOhjeetPainike();
 		private var poistunappi:poistu = new poistu();
 		private var tausta:PelinTausta = new PelinTausta();
+		private var numStars:int = 80;
 		
 		
 		public function PelinAloitusNakyma(passedClass:Engine, stage:Stage)
@@ -41,6 +42,11 @@ package Pelijuttuja.asscript
 		{
 			mainClass.naytaPelinOhjeet();
 			
+			for (var i:int = 0; i < numStars; i++)
+			{
+				stage.addChildAt(new Star(stage), 1);
+		
+			}	
 		}
 	}
 }
