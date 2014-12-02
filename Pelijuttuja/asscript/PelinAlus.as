@@ -21,34 +21,45 @@ package Pelijuttuja.asscript
 			myStage.addEventListener(KeyboardEvent.KEY_DOWN, onKeyPress)
 			myStage.addEventListener(KeyboardEvent.KEY_UP, onKeyUp)
 			myStage.addEventListener(Event.ENTER_FRAME, gameloop)
+		}
+	
+		protected function gameloop(event:Event):void
+		{
+		if (liikeUp == true)
+			y -= 2
+		
+		if (liikeDown == true)
+			y += 2
 				
-			protected function gameloop(event:Event):void
-			{
-				
-			}
-				
-			protected function onKeyUp(event:KeyboardEvent):void
-			{
-				if(event.keyCode==Keyboard.UP)
-					liikeUp = false;
-				if(event.keyCode==Keyboard.DOWN)
-					liikeDown = false;
-				if(event.keyCode==Keyboard.LEFT)
-					liikeLeft = false;
-				if(event.keyCode==Keyboard.RIGHT)
-					liikeRight = false;
-			}
-			public function onKeyPress(event:KeyboardEvent) :void
-			{
-				if(event.keyCode==Keyboard.UP)
-					liikeUp = true;
-				if(event.keyCode==Keyboard.DOWN)
-					liikeDown = true;
-				if(event.keyCode==Keyboard.LEFT)
-					liikeLeft = true;
-				if(event.keyCode==Keyboard.RIGHT)
-					liikeRight = true;
-			}
+		if ( liikeLeft == true)
+			x -= 2
+			
+		if (liikeRight == true)
+			x += 2
+		}
+			
+		protected function onKeyUp(event:KeyboardEvent):void
+		{
+			if(event.keyCode==Keyboard.UP)
+				liikeUp = false;
+			if(event.keyCode==Keyboard.DOWN)
+				liikeDown = false;
+			if(event.keyCode==Keyboard.LEFT)
+				liikeLeft = false;
+			if(event.keyCode==Keyboard.RIGHT)
+				liikeRight = false;
+		}
+		
+		public function onKeyPress(event:KeyboardEvent) :void
+		{
+			if(event.keyCode==Keyboard.UP)
+				liikeUp = true;
+			if(event.keyCode==Keyboard.DOWN)
+				liikeDown = true;
+			if(event.keyCode==Keyboard.LEFT)
+				liikeLeft = true;
+			if(event.keyCode==Keyboard.RIGHT)
+				liikeRight = true;
 		}
 	}
 }

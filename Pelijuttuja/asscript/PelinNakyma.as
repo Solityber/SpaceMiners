@@ -14,6 +14,7 @@ package Pelijuttuja.asscript
 		private var poistunappi:poistu = new poistu();
 		public var kaivuuAlus:Kaivuualus;
 		public var myStage:Stage
+		public var avaruus:Avaruus;
 		public var laukaisuAlusta:Laukaisualusta;
 	
 		public function PelinNakyma(stage:Stage, engine:Engine)
@@ -21,6 +22,9 @@ package Pelijuttuja.asscript
 			
 			mainClass = engine;
 			myStage = stage;
+			
+			avaruus = new Avaruus(myStage, engine);
+			
 			kaivuuAlus=new Kaivuualus(myStage);
 			laukaisuAlusta= new Laukaisualusta(myStage);
 			this.addChild(maatausta);
@@ -31,12 +35,21 @@ package Pelijuttuja.asscript
 			kaivuuAlus.y = myStage.stageHeight/2;
 		
 			poistunappi.addEventListener(MouseEvent.CLICK, poistupelipainikePainettu);
-			laukaisuAlusta.addEventListener(MouseEvent.CLICK, karttaPainettu);
+			laukaisuAlusta.addEventListener(MouseEvent.CLICK, karttapelipainikePainettu);
 		}
-		public function karttaPainettu(event:MouseEvent)
+		public function karttapelipainikePainettu(event:MouseEvent)
 		{
 			trace("karttaPainettu")
-			;
+			naytaAvaruus();
+			this.removeChild(maatausta);
+			this.removeChild(kaivuuAlus);
+			this.removeChild(laukaisuAlusta);
+			this.removeChild(poistunappi);
+		}
+		
+		private function naytaAvaruus():void
+		{
+			this.addChild(avaruus);
 		}
 		public function poistupelipainikePainettu(event:MouseEvent)
 		{

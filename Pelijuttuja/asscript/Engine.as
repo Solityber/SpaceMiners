@@ -13,8 +13,8 @@ package Pelijuttuja.asscript
 		public var peli:PelinNakyma;
 		public var ohje:PelinOhjeet;
 		public var maatausta:Maatausta;
-		public var avarauus:Avaruus;
-		
+		public var avaruus:Avaruus;
+		private var numStars:int = 80;
 
 		
 		public function Engine()
@@ -56,7 +56,19 @@ package Pelijuttuja.asscript
 			if(ohje){
 				trace("poista ohje")
 				removeChild(ohje)
-			
+			}
+		}
+		
+		public function naytaAvaruus()
+		{
+			avaruus = new Avaruus(stage, this);
+			if(avaruus){
+				trace("avaruus")
+				addChild(avaruus)
+				stage.addChildAt(new Star(stage), 1);
+				
+				
+				for (var i:int = 0; i < numStars; i++)
 			}
 		}
 	}
