@@ -1,65 +1,124 @@
 package Pelijuttuja.asscript
 {
+	
 	import flash.display.MovieClip;
 	import flash.display.Stage;
-	import flash.events.Event;
-	import flash.events.KeyboardEvent;
+	import Pelijuttuja.asscript.KeyObject;
 	import flash.ui.Keyboard;
+	import flash.events.Event;
+	import flash.utils.Timer;
+	import flash.events.TimerEvent;
 	
 	public class PelinAlus extends MovieClip
 	{
-		private var liikeLeft:Boolean = false;
-		private var liikeRight:Boolean = false;
-		private var liikeUp:Boolean = false;
-		private var liikeDown:Boolean = false;
-		private var myStage:Stage;
 		
-		public function PelinAlus(stage:Stage)
-		{
-			stop();
-			myStage = stage;
-			myStage.addEventListener(KeyboardEvent.KEY_DOWN, onKeyPress)
-			myStage.addEventListener(KeyboardEvent.KEY_UP, onKeyUp)
-			myStage.addEventListener(Event.ENTER_FRAME, gameloop)
-		}
-	
-		protected function gameloop(event:Event):void
-		{
-		if (liikeUp == true)
-			y -= 2
+		private var stageRef:Stage;
+		private var key:KeyObject;
+		private var speed:Number = 0.6;
+		private var vx:Number = 0;
+		private var vy:Number = 0;
+		private var friction:Number = 0.95;
+		private var maxspeed:Number = 4;
 		
-		if (liikeDown == true)
-			y += 2
-				
-		if ( liikeLeft == true)
-			x -= 2
+		//fire related variables
+		private var fireTimer:Timer; //causes delay between fires
+		private var canFire:Boolean = true; //can you fire a laser
+		
+		public function PelinAlus(stageRef:Stage)
+		{
+			this.stageRef = stageRef;
+			key = new KeyObject(stageRef);
 			
-		if (liikeRight == true)
-			x += 2
-		}
+			//setup your fireTimer and attach a listener to it.
+			fireTimer = new Timer(300, 1);
+			fireTimer.addEventListener(TimerEvent.TIMER, fireTimerHandler, false, 0, true);
 			
-		protected function onKeyUp(event:KeyboardEvent):void
-		{
-			if(event.keyCode==Keyboard.UP)
-				liikeUp = false;
-			if(event.keyCode==Keyboard.DOWN)
-				liikeDown = false;
-			if(event.keyCode==Keyboard.LEFT)
-				liikeLeft = false;
-			if(event.keyCode==Keyboard.RIGHT)
-				liikeRight = false;
+			addEventListener(Event.ENTER_FRAME, loop, false, 0, true);
 		}
 		
-		public function onKeyPress(event:KeyboardEvent) :void
+		public function loop(e:Event) : void
 		{
-			if(event.keyCode==Keyboard.UP)
-				liikeUp = true;
-			if(event.keyCode==Keyboard.DOWN)
-				liikeDown = true;
-			if(event.keyCode==Keyboard.LEFT)
-				liikeLeft = true;
-			if(event.keyCode==Keyboard.RIGHT)
-				liikeRight = true;
+			//keypresses
+			if (key.isDown(Keyboard.LEFT))
+				vx -= speed;
+			else if (key.isDown(Keyboard.RIGHT))
+				vx += speed;
+			else
+				vx *= friction;
+			
+			if (key.isDown(Keyboard.UP))
+				vy -= speed;
+			else if (key.isDown(Keyboard.DOWN))
+				vy += speed;
+			else
+				vy *= friction;
+			
+			if (key.isDown(Keyboard.SPACE))
+				fireBullet();
+			
+			//update position
+			x += vx;
+			y += vy;
+			
+			//speed adjustment
+			if (vx > maxspeed)
+				vx = maxspeed;
+			else if (vx < -maxspeed)
+				vx = -maxspeed;
+			
+			if (vy > maxspeed)
+				vy = maxspeed;
+			else if (vy < -maxspeed)
+				vy = -maxspeed;
+			
+			//ship appearance
+			rotation = vx;
+			scaleX = (maxspeed - Math.abs(vx))/(maxspeed*4) + 0.95;
+			
+			//stay inside screen
+			if (x > stageRef.stageWidth)
+			{
+				x = stageRef.stageWidth;
+				vx = -vx;
+			}
+			else if (x < 0)
+			{
+				x = 0;
+				vx = -vx;
+			}
+			
+			if (y > stageRef.stageHeight)
+			{
+				y = stageRef.stageHeight;
+				vy = -vy;
+			}
+			else if (y < 0)
+			{
+				y = 0;
+				vy = -vy;
+			}
+			
 		}
+		
+		private function fireBullet() : void
+		{
+			if (canFire)
+			{
+				stageRef.addChild(new LaserBlue(stageRef, x + vx, y - this.height/2));
+				canFire = false;
+				fireTimer.start();
+			}
+			
+		}
+
+		
+		private function fireTimerHandler(e:TimerEvent) : void
+		{
+			
+			canFire = true;
+		}
+		
 	}
+	
 }
+

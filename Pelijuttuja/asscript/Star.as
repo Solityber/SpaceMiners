@@ -18,7 +18,7 @@ package Pelijuttuja.asscript
 			this.stageRef = stageRef;
 			setupStar(true);
 			
-			addEventListener(Event.ENTER_FRAME, loop, false, 0, true);
+			addEventListener(Event.ENTER_FRAME, loop);
 		}
 		
 		public function setupStar(randomizeY:Boolean = false) : void
@@ -40,7 +40,6 @@ package Pelijuttuja.asscript
 			
 			if (y > stageRef.stageHeight)
 				setupStar();
-			
 		}
 		
 	}

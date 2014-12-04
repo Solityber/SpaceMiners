@@ -15,6 +15,7 @@ package Pelijuttuja.asscript
 		
 		public function Meteor(stageRef:Stage)
 		{
+			
 			this.stageRef = stageRef;
 			setupMeteor(true);
 			
@@ -24,13 +25,15 @@ package Pelijuttuja.asscript
 		public function setupMeteor(randomizeY:Boolean = false) : void
 		{
 			//inline conditional, looks complicated but it's not.
+			
 			y = randomizeY ? Math.random()*stageRef.stageHeight : 0;
 			x = Math.random()*stageRef.stageWidth;
-			alpha = Math.random();
 			rotation = Math.random()*360;
+			scaleX = Math.random()*0.5 + 0.5;
+			scaleY = Math.random()*0.5 + 0.5;
 	
 			
-			speed = 0.50 + Math.random()*2;
+			speed = 0.75 + Math.random()*2;
 		}
 		
 		public function loop(e:Event) : void
@@ -39,6 +42,11 @@ package Pelijuttuja.asscript
 			
 			if (y > stageRef.stageHeight)
 				setupMeteor();
+			if(currentLabel != "roll")
+				gotoAndPlay("roll");
+			{
+				
+			}
 			
 		}
 		
