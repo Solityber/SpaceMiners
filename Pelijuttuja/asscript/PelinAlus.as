@@ -19,6 +19,7 @@ package Pelijuttuja.asscript
 		private var vy:Number = 0;
 		private var friction:Number = 0.95;
 		private var maxspeed:Number = 4;
+		public var laser:LaserBlue;
 		
 		//fire related variables
 		private var fireTimer:Timer; //causes delay between fires
@@ -76,25 +77,25 @@ package Pelijuttuja.asscript
 			scaleX = (maxspeed - Math.abs(vx))/(maxspeed*4) + 0.95;
 			
 			//stay inside screen
-			if (x > stageRef.stageWidth)
+			if (x + this.width/2 > stageRef.stageWidth)
 			{
-				x = stageRef.stageWidth;
+				x = stageRef.stageWidth - this.width/2;
 				vx = -vx;
 			}
-			else if (x < 0)
+			else if (x - this.width/2 < 0)
 			{
-				x = 0;
+				x = this.width/2;
 				vx = -vx;
 			}
 			
-			if (y > stageRef.stageHeight)
+			if (y + this.height/2 > stageRef.stageHeight)
 			{
-				y = stageRef.stageHeight;
+				y = stageRef.stageHeight - this.height/2;
 				vy = -vy;
 			}
-			else if (y < 0)
+			else if (y - this.height/2 < 0)
 			{
-				y = 0;
+				y = this.height/2;
 				vy = -vy;
 			}
 			

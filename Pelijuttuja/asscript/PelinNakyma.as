@@ -16,8 +16,6 @@ package Pelijuttuja.asscript
 		public var myStage:Stage
 		public var avaruus:Avaruus;
 		public var laukaisuAlusta:Laukaisualusta;
-		private var numStars:int = 80;
-		private var numMeteor:int = 4;
 	
 		public function PelinNakyma(stage:Stage, engine:Engine)
 		{
@@ -52,19 +50,10 @@ package Pelijuttuja.asscript
 		private function naytaAvaruus():void
 		{
 				avaruus = new Avaruus(myStage);
-				if(avaruus){
+				if(avaruus)
+				{
 					trace("avaruus")
 					stage.addChild(avaruus);
-					
-					
-					for (var i:int = 0; i < numStars; i++)
-					{
-						avaruus.addChild(new Star(stage));
-					}
-					for (var i:int = 0; i < numMeteor; i++)
-					{
-						avaruus.addChild(new Meteor(stage));
-					}
 				}
 		}
 		public function poistupelipainikePainettu(event:MouseEvent)

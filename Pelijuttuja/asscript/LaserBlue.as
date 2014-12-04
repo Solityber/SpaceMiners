@@ -8,10 +8,13 @@ package Pelijuttuja.asscript
 	{
 		private var stageRef:Stage;
 		private var bulletSpeed:Number = 16;
+		private var target3;
+		
 		
 		public function LaserBlue (stageRef:Stage, x:Number, y:Number) : void
 		{
 			this.stageRef = stageRef;
+			
 			this.x = x;
 			this.y = y;
 			
@@ -25,6 +28,8 @@ package Pelijuttuja.asscript
 				
 				if (y < 0) 
 				removeSelf();
+				
+				
 		}
 		private function removeSelf() : void
 		{
@@ -32,6 +37,8 @@ package Pelijuttuja.asscript
 			
 			if (stageRef.contains(this))
 				stageRef.removeChild(this);
+			
+			
 			
 		}
 	}
