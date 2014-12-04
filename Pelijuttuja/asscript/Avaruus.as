@@ -4,16 +4,17 @@ package Pelijuttuja.asscript
 	
 	import flash.display.MovieClip;
 	import flash.display.Stage;
+	import flash.events.Event;
 	
 	public class Avaruus extends MovieClip
 	{
 		public var mainClass:Engine;
 		public var myStage:Stage;
 		public var pelinalus:PelinAlus;
-		private var numMeteor:int = 4;
+		private var MeteorList:Array = new Array();
 		private var numStars:int = 80;
 		
-		public function Avaruus(stage:Stage)
+		public function Avaruus(stage:Stage) : void
 		{
 			for (var i:int = 0; i < numStars; i++)
 			{
@@ -25,10 +26,27 @@ package Pelijuttuja.asscript
 			pelinalus.y = myStage.stageHeight/2;
 			this.addChild(pelinalus);
 			
-			for (var b:int = 0; b < numMeteor; b++)
+			addEventListener(Event.ENTER_FRAME, loop, false, 0, true);
+		}
+			
+			private function loop(e:Event) : void
 			{
-				this.addChild(new Meteor(stage, pelinalus));
+				if (Math.floor(Math.random() * 90) == 5)
+				{
+					var enemy:Meteor = new Meteor(myStage, pelinalus);
+					
+					enemy.addEventListener(Event.REMOVED_FROM_STAGE, removeEnemy, false, 0, true);
+					
+					MeteorList.push(enemy);
+					
+					myStage.addChild(enemy);
+				}
 			}
+		private function removeEnemy(e:Event)
+		{
+			MeteorList.splice(MeteorList.indexOf(e.currentTarget), 1);
+			
+		  
 		}
 	}
 }

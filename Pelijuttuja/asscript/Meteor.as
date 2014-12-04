@@ -11,47 +11,38 @@ package Pelijuttuja.asscript
 	{
 		
 		private var stageRef:Stage;
-		private var speed:Number;
-		private var target;
+		private var vy:Number = 3;
+		private var target:PelinAlus;
 		
 		
 		
-		public function Meteor(stageRef:Stage, alus:PelinAlus)
+		
+		public function Meteor(stageRef:Stage, target:PelinAlus) : void
 		{
 			
 			this.stageRef = stageRef;
-			setupMeteor(true);
-			this.target = alus;
 			
+			this.target = target;
+		
+			x = Math.random() * stageRef.stageWidth;
+			y = -5;
 			
 			addEventListener(Event.ENTER_FRAME, loop, false, 0, true);
 		}
 		
-		public function setupMeteor(randomizeY:Boolean = false) : void
-		{
-			//inline conditional, looks complicated but it's not.
-			
-			y = -50;
-			x = Math.random()*stageRef.stageWidth;
-			rotation = Math.random()*360;
-			scaleX = Math.random()*0.5 + 0.5;
-			scaleY = Math.random()*0.5 + 0.5;
-	
-			
-			speed = 0.75 + Math.random()*2;
-		}
-		
 		public function loop(e:Event) : void
 		{
-			y += speed;
-		
+			y += vy;
 			
-			if (y > stageRef.stageHeight + 50)
-				setupMeteor();
+			if (y > stageRef.stageHeight)
+				removeSelf();
+			
+			
 			if(currentLabel != "roll")
 				gotoAndPlay("roll");
 			
-			if (hitTestObject(target))
+			
+			if (hitTestObject(target.hit))
 			{
 				trace("hitME");
 				removeSelf();
@@ -62,8 +53,10 @@ package Pelijuttuja.asscript
 		}	
 		private function removeSelf() : void
 		{
+			removeEventListener(Event.ENTER_FRAME, loop);
+			
 			if (stageRef.contains(this))
-				setupMeteor();
+					stageRef.removeChild(this);
 				
 		}
 		
