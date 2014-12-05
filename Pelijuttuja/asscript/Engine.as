@@ -15,6 +15,7 @@ package Pelijuttuja.asscript
 		public var maatausta:Maatausta;
 		public var avaruus:Avaruus;
 		private var numStars:int = 60;
+		private var meteorList:Array = new Array();
 
 		
 		public function Engine()

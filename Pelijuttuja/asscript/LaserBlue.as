@@ -37,7 +37,10 @@ package Pelijuttuja.asscript
 			
 			if (stageRef.contains(this))
 				stageRef.removeChild(this);
-			
+		
+		}
+		private function removeself() : void
+		{	
 			
 			
 		}

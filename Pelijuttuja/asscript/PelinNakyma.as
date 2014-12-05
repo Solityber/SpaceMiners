@@ -12,18 +12,16 @@ package Pelijuttuja.asscript
 		public var mainClass:Engine;
 		private var maatausta:Maatausta = new Maatausta();
 		private var poistunappi:poistu = new poistu();
+		public var laukaisuAlusta:Laukaisualusta;
 		public var kaivuuAlus:Kaivuualus;
 		public var myStage:Stage
 		public var avaruus:Avaruus;
-		public var laukaisuAlusta:Laukaisualusta;
 	
 		public function PelinNakyma(stage:Stage, engine:Engine)
 		{
 			
 			mainClass = engine;
 			myStage = stage;
-			
-			avaruus = new Avaruus(myStage);
 			
 			kaivuuAlus=new Kaivuualus(myStage);
 			laukaisuAlusta= new Laukaisualusta(myStage);
