@@ -1,13 +1,14 @@
 package Pelijuttuja.asscript
 {
 	
+	import Pelijuttuja.asscript.KeyObject;
+	
 	import flash.display.MovieClip;
 	import flash.display.Stage;
-	import Pelijuttuja.asscript.KeyObject;
-	import flash.ui.Keyboard;
 	import flash.events.Event;
-	import flash.utils.Timer;
 	import flash.events.TimerEvent;
+	import flash.ui.Keyboard;
+	import flash.utils.Timer;
 	
 	public class PelinAlus extends MovieClip
 	{
@@ -20,6 +21,7 @@ package Pelijuttuja.asscript
 		private var friction:Number = 0.95;
 		private var maxspeed:Number = 4;
 		public var laser:LaserBlue;
+		private var lifeAmount:int = 3;
 		
 		//fire related variables
 		private var fireTimer:Timer; //causes delay between fires
@@ -99,7 +101,15 @@ package Pelijuttuja.asscript
 				vy = -vy;
 			}
 			
+		if (PublicVariables.lifeAmount < 0)
+		{
+			removeEventListener(Event.ENTER_FRAME, loop);
+			this.parent.removeChild(this);
 		}
+			
+			
+		}
+		
 		
 		private function fireBullet() : void
 		{

@@ -36,6 +36,7 @@ package Pelijuttuja.asscript
 		public function AloitapelipainikePainettu(event:MouseEvent)
 		{
 			mainClass.naytaPelinNakyma();
+			
 		}
 		public function OhjeetpelipainikePainettu(event:MouseEvent)
 		{

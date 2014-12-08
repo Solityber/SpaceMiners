@@ -43,6 +43,7 @@ package Pelijuttuja.asscript
 			this.removeChild(kaivuuAlus);
 			this.removeChild(laukaisuAlusta);
 			this.removeChild(poistunappi);
+			PublicVariables.lifeAmount = 2;
 		}
 		
 		private function naytaAvaruus():void

@@ -11,7 +11,6 @@ package Pelijuttuja.asscript
 		public var mainClass:Engine;
 		public var myStage:Stage;
 		public var pelinalus:PelinAlus;
-		private var MeteorList:Array = new Array();
 		private var numStars:int = 80;
 		
 		public function Avaruus(stage:Stage) : void
@@ -37,14 +36,23 @@ package Pelijuttuja.asscript
 					
 					enemy.addEventListener(Event.REMOVED_FROM_STAGE, removeEnemy, false, 0, true);
 					
-					MeteorList.push(enemy);
+					PublicVariables.meteorList.push(enemy);
 					
 					myStage.addChild(enemy);
 				}
+				
+				if (PublicVariables.lifeAmount < 0)
+				{
+					PublicVariables.mainClass.naytaPelinNakyma();
+					removeEventListener(Event.ENTER_FRAME, loop);	
+					this.parent.removeChild(this);
+				}
+					
+				
 			}
 		private function removeEnemy(e:Event)
 		{
-			MeteorList.splice(MeteorList.indexOf(e.currentTarget), 1);
+			PublicVariables.meteorList.splice(PublicVariables.meteorList.indexOf(e.currentTarget), 1);
 			
 		  
 		}

@@ -12,13 +12,15 @@ package Pelijuttuja.asscript
 		
 		private var stageRef:Stage;
 		private var vy:Number = 3;
-		private var ay:Number = .4;
+		
 		private var target:PelinAlus;
 		
 		
 		
 	public function Meteor(stageRef:Stage, target:PelinAlus) : void
 	{
+			scaleX = Math.random()*0.7+0.3;
+			scaleY = Math.random()*0.7+0.3;
 			
 			this.stageRef = stageRef;
 			
@@ -32,17 +34,27 @@ package Pelijuttuja.asscript
 		
 		public function loop(e:Event) : void
 		{
-			vy += ay;
+			
 			y += vy;
 			
 			if (y > stageRef.stageHeight)
 				removeSelf();
 			
-			if (y > stageRef.stageHeight)
-				removeSelf();
 			
 			if(currentLabel != "roll")
 				gotoAndPlay("roll");
+			if (hitTestObject (target.hit))
+			{
+				PublicVariables.lifeAmount--;
+				trace("hitME");
+				removeSelf();
+			}
+			
+			if (PublicVariables.lifeAmount < 0)
+			{
+				removeEventListener(Event.ENTER_FRAME, loop);
+				removeSelf();
+			}
 			
 		}	
 		
@@ -55,6 +67,10 @@ package Pelijuttuja.asscript
 				
 		}
 		
+		public function takeHit() : void
+		{
+			removeSelf();
+		}
 	}
 	
 }

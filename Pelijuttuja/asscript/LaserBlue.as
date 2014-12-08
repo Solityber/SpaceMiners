@@ -9,12 +9,13 @@ package Pelijuttuja.asscript
 		private var stageRef:Stage;
 		private var bulletSpeed:Number = 16;
 		private var target3;
+		private var engine:Engine;
 		
 		
-		public function LaserBlue (stageRef:Stage, x:Number, y:Number) : void
+		public function LaserBlue (stageRef:Stage,  x:Number, y:Number) : void
 		{
 			this.stageRef = stageRef;
-			
+			this.engine = engine;
 			this.x = x;
 			this.y = y;
 			
@@ -26,10 +27,24 @@ package Pelijuttuja.asscript
 				//move bullet up
 				y -= bulletSpeed;
 				
-				if (y < 0) 
+				
+				
+			for (var i:int = PublicVariables.meteorList.length-1; i >= 0; i--)
+			{
+				if(stageRef.contains(PublicVariables.meteorList[i]))
+				{
+					if (hitTestObject(PublicVariables.meteorList[i]))
+					{
+						trace("hitEnemy");
+						PublicVariables.meteorList[i].takeHit();
+						removeSelf();
+						break;
+					}
+				}
+			}
+				
+			if (y < 0) 
 				removeSelf();
-				
-				
 		}
 		private function removeSelf() : void
 		{
@@ -38,11 +53,6 @@ package Pelijuttuja.asscript
 			if (stageRef.contains(this))
 				stageRef.removeChild(this);
 		
-		}
-		private function removeself() : void
-		{	
-			
-			
 		}
 	}
 }
