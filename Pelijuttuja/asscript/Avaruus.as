@@ -41,6 +41,17 @@ package Pelijuttuja.asscript
 					myStage.addChild(enemy);
 				}
 				
+				if (Math.floor(Math.random() * 600) == 1)
+				{
+					var lappu:KysymysLappu = new KysymysLappu(myStage, pelinalus);
+					
+					lappu.addEventListener(Event.REMOVED_FROM_STAGE, removeLappu, false, 0, true);
+					
+					PublicVariables.kysymyslappuList.push(lappu);
+					
+					myStage.addChild(lappu);
+				}
+				
 				if (PublicVariables.lifeAmount < 0)
 				{
 					PublicVariables.mainClass.naytaPelinNakyma();
@@ -50,6 +61,18 @@ package Pelijuttuja.asscript
 					
 				
 			}
+			
+			protected function removeLappu(event:Event):void
+			{
+				PublicVariables.kysymyslappuList.splice(PublicVariables.kysymyslappuList.indexOf(event.currentTarget), 1);
+				
+			}
+			
+		public function Pause():void
+		{
+			stage.frameRate = 0;
+		}
+			
 		private function removeEnemy(e:Event)
 		{
 			PublicVariables.meteorList.splice(PublicVariables.meteorList.indexOf(e.currentTarget), 1);

@@ -16,6 +16,7 @@ package Pelijuttuja.asscript
 		public var avaruus:Avaruus;
 		private var numStars:int = 60;
 		public var meteorList:Array = new Array();
+		public var kysymyslappuList:Array = new Array();
 
 		
 		public function Engine()

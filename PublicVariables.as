@@ -4,6 +4,7 @@ package
 
 	public class PublicVariables
 	{
+		public static var kysymyslappuList:Array = new Array();
 		public static var meteorList:Array = new Array();
 		public static var lifeAmount:int = 2;
 		public static var mainClass:Engine;

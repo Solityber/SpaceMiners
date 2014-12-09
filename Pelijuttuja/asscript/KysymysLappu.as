@@ -1,30 +1,24 @@
-
-
 package Pelijuttuja.asscript
 {
-	
 	import flash.display.MovieClip;
 	import flash.display.Stage;
 	import flash.events.Event;
 	
-	public class Meteor extends MovieClip
+	public class KysymysLappu extends MovieClip
 	{
-		
 		private var stageRef:Stage;
 		private var vy:Number = 3;
 		private var target:PelinAlus;
 		
 		
 		
-	public function Meteor(stageRef:Stage, target:PelinAlus) : void
-	{
-			scaleX = Math.random()*0.7+0.3;
-			scaleY = Math.random()*0.7+0.3;
-			
+		public function KysymysLappu(stageRef:Stage, target:PelinAlus) : void
+		{
+			rotation = Math.random()*360;
 			this.stageRef = stageRef;
 			
 			this.target = target;
-		
+			
 			x = Math.random() * stageRef.stageWidth;
 			y = -5;
 			
@@ -40,13 +34,9 @@ package Pelijuttuja.asscript
 			if (y > stageRef.stageHeight)
 				removeSelf();
 			
-			
-			if(currentLabel != "roll")
-				gotoAndPlay("roll");
 			if (hitTestObject (target.hit))
 			{
-				PublicVariables.lifeAmount--;
-				trace("hitME");
+				trace("lappu");
 				removeSelf();
 			}
 			
@@ -63,22 +53,12 @@ package Pelijuttuja.asscript
 			removeEventListener(Event.ENTER_FRAME, loop);
 			
 			if (stageRef.contains(this))
-					stageRef.removeChild(this);
-				
-		}
-		
-		private function showKysymyslappu():void
-		{
+				stageRef.removeChild(this);
 			
 		}
-		
-		public function takeHit() : void
+		public function takeHit():void
 		{
-			
-			removeSelf();
+			stage.frameRate = 0;
 		}
 	}
-	
 }
-
-
