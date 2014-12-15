@@ -41,7 +41,7 @@ package Pelijuttuja.asscript
 					myStage.addChild(enemy);
 				}
 				
-				if (Math.floor(Math.random() * 600) == 1)
+				if (Math.floor(Math.random() * 800) == 1)
 				{
 					var lappu:KysymysLappu = new KysymysLappu(myStage, pelinalus);
 					

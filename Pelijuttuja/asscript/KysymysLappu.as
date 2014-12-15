@@ -9,6 +9,7 @@ package Pelijuttuja.asscript
 		private var stageRef:Stage;
 		private var vy:Number = 3;
 		private var target:PelinAlus;
+		private var kysymysikkuna:KysymysIkkuna;
 		
 		
 		
@@ -36,7 +37,8 @@ package Pelijuttuja.asscript
 			
 			if (hitTestObject (target.hit))
 			{
-				trace("lappu");
+				
+				trace("hitt");
 				removeSelf();
 			}
 			
