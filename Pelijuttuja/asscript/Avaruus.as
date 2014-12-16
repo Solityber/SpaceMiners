@@ -12,6 +12,7 @@ package Pelijuttuja.asscript
 		public var myStage:Stage;
 		public var pelinalus:PelinAlus;
 		private var numStars:int = 80;
+		private var tietopalkki = new TietoPalkki();
 		
 		public function Avaruus(stage:Stage) : void
 		{
@@ -24,8 +25,10 @@ package Pelijuttuja.asscript
 			pelinalus.x = myStage.stageWidth/2;
 			pelinalus.y = myStage.stageHeight/2;
 			this.addChild(pelinalus);
+			this.addChild(tietopalkki);
 			
 			addEventListener(Event.ENTER_FRAME, loop, false, 0, true);
+
 		}
 			
 			private function loop(e:Event) : void
@@ -51,6 +54,15 @@ package Pelijuttuja.asscript
 					
 					myStage.addChild(lappu);
 				}
+				if (PublicVariables.lifeAmount < 2)
+				{
+					
+				}
+				
+				if (PublicVariables.lifeAmount < 1)
+				{
+					
+				}
 				
 				if (PublicVariables.lifeAmount < 0)
 				{
@@ -61,6 +73,7 @@ package Pelijuttuja.asscript
 					
 				
 			}
+			
 			
 			protected function removeLappu(event:Event):void
 			{

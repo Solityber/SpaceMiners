@@ -17,17 +17,18 @@ package Pelijuttuja.asscript
 		private var numStars:int = 60;
 		public var meteorList:Array = new Array();
 		public var kysymyslappuList:Array = new Array();
-
+		
 		
 		public function Engine()
 		{
 			//naytaAloitusNakyma();
 			PublicVariables.mainClass = this;
 			naytaPelinAloitusNakyma();
+			
 		}
 		
 		public function naytaPelinAloitusNakyma()
-		{
+		{	
 			aloitus = new PelinAloitusNakyma(this, stage)
 			if(peli){
 				removeChild(peli);

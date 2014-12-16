@@ -9,7 +9,8 @@ package Pelijuttuja.asscript
 		private var stageRef:Stage;
 		private var vy:Number = 3;
 		private var target:PelinAlus;
-		private var kysymysikkuna:KysymysIkkuna;
+		public var kysymysikkuna:KysymysIkkuna = new KysymysIkkuna();
+		
 		
 		
 		
@@ -38,8 +39,10 @@ package Pelijuttuja.asscript
 			if (hitTestObject (target.hit))
 			{
 				
+				naytaKysymys();
 				trace("hitt");
 				removeSelf();
+			
 			}
 			
 			if (PublicVariables.lifeAmount < 0)
@@ -48,7 +51,16 @@ package Pelijuttuja.asscript
 				removeSelf();
 			}
 			
-		}	
+		}
+		private function naytaKysymys():void
+		{
+			kysymysikkuna = new KysymysIkkuna();
+			if(kysymysikkuna)
+			{
+				trace("kysymys")
+				stage.addChild(kysymysikkuna);
+			}
+		}
 		
 		private function removeSelf() : void
 		{

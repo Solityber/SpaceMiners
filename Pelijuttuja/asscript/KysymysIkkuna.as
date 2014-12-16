@@ -6,7 +6,7 @@ package Pelijuttuja.asscript
 	{
 		public function KysymysIkkuna()
 		{
-			super();
+			
 		}
 	}
 }

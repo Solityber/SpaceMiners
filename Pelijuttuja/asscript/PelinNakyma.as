@@ -10,6 +10,7 @@ package Pelijuttuja.asscript
 	public class PelinNakyma extends MovieClip
 	{
 		public var mainClass:Engine;
+		private var tietopalkki = new TietoPalkki();
 		private var maatausta:Maatausta = new Maatausta();
 		private var poistunappi:poistu = new poistu();
 		public var laukaisuAlusta:Laukaisualusta;
@@ -26,11 +27,13 @@ package Pelijuttuja.asscript
 			kaivuuAlus=new Kaivuualus(myStage);
 			laukaisuAlusta= new Laukaisualusta(myStage);
 			this.addChild(maatausta);
+			this.addChild(tietopalkki);
 			this.addChild(poistunappi);
 			this.addChild(kaivuuAlus);
 			this.addChild(laukaisuAlusta);
 			kaivuuAlus.x = myStage.stageWidth/2;
 			kaivuuAlus.y = myStage.stageHeight/2;
+			
 		
 			poistunappi.addEventListener(MouseEvent.CLICK, poistupelipainikePainettu);
 			laukaisuAlusta.addEventListener(MouseEvent.CLICK, karttapelipainikePainettu);
@@ -43,6 +46,7 @@ package Pelijuttuja.asscript
 			this.removeChild(kaivuuAlus);
 			this.removeChild(laukaisuAlusta);
 			this.removeChild(poistunappi);
+			this.removeChild(tietopalkki);
 			PublicVariables.lifeAmount = 2;
 		}
 		
@@ -69,6 +73,7 @@ package Pelijuttuja.asscript
 			this.removeChild(maatausta);
 			this.removeChild(kaivuuAlus);
 			this.removeChild(laukaisuAlusta);
+			this.removeChild(tietopalkki);
 			
 			
 		}
