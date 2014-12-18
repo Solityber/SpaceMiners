@@ -14,6 +14,8 @@ package Pelijuttuja.asscript
 		private var vy:Number = 3;
 		private var target:PelinAlus;
 		
+		public var points:int = 10;
+		
 		
 		
 	public function Meteor(stageRef:Stage, target:PelinAlus) : void
@@ -33,29 +35,30 @@ package Pelijuttuja.asscript
 		
 		public function loop(e:Event) : void
 		{
-			
+			if(!PublicVariables.pause)
+			{	
 				y += vy;
-			
-			
-			if (y > stageRef.stageHeight)
-				removeSelf();
-			
-			
-			if(currentLabel != "roll")
-				gotoAndPlay("roll");
-			if (hitTestObject (target.hit))
-			{
-				PublicVariables.lifeAmount--;
-				trace("hitME");
-				removeSelf();
+				
+				
+				if (y > stageRef.stageHeight)
+					removeSelf();
+				
+				
+				if(currentLabel != "roll")
+					gotoAndPlay("roll");
+				if (hitTestObject (target.hit))
+				{
+					PublicVariables.lifeAmount--;
+					trace("hitME");
+					removeSelf();
+				}
+				
+				if (PublicVariables.lifeAmount < 0)
+				{
+					removeEventListener(Event.ENTER_FRAME, loop);
+					removeSelf();
+				}
 			}
-			
-			if (PublicVariables.lifeAmount < 0)
-			{
-				removeEventListener(Event.ENTER_FRAME, loop);
-				removeSelf();
-			}
-			
 		}	
 		
 		private function removeSelf() : void
@@ -74,7 +77,7 @@ package Pelijuttuja.asscript
 		
 		public function takeHit() : void
 		{
-			
+			PublicVariables.addGold(10);
 			removeSelf();
 		}
 	}

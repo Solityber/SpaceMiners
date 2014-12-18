@@ -10,12 +10,12 @@ package Pelijuttuja.asscript
 	public class PelinNakyma extends MovieClip
 	{
 		public var mainClass:Engine;
-		private var tietopalkki = new TietoPalkki();
 		private var maatausta:Maatausta = new Maatausta();
 		private var poistunappi:poistu = new poistu();
 		public var laukaisuAlusta:Laukaisualusta;
 		public var kaivuuAlus:Kaivuualus;
 		public var myStage:Stage
+		private var tietopalkki:TietoPalkki;
 		public var avaruus:Avaruus;
 	
 		public function PelinNakyma(stage:Stage, engine:Engine)
@@ -23,6 +23,7 @@ package Pelijuttuja.asscript
 			
 			mainClass = engine;
 			myStage = stage;
+			tietopalkki = new TietoPalkki(myStage);
 			
 			kaivuuAlus=new Kaivuualus(myStage);
 			laukaisuAlusta= new Laukaisualusta(myStage);

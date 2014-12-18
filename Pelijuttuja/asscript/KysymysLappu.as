@@ -3,13 +3,15 @@ package Pelijuttuja.asscript
 	import flash.display.MovieClip;
 	import flash.display.Stage;
 	import flash.events.Event;
+	import flash.events.MouseEvent;
 	
 	public class KysymysLappu extends MovieClip
 	{
 		private var stageRef:Stage;
 		private var vy:Number = 3;
 		private var target:PelinAlus;
-		public var kysymysikkuna:KysymysIkkuna = new KysymysIkkuna();
+		public var kysymysikkuna:KysymysIkkuna;
+		
 		
 		
 		
@@ -25,40 +27,44 @@ package Pelijuttuja.asscript
 			y = -5;
 			
 			addEventListener(Event.ENTER_FRAME, loop, false, 0, true);
+			
 		}
+		
 		
 		public function loop(e:Event) : void
 		{
-			
+			if(!PublicVariables.pause)
+			{	
 				y += vy;
-			
-			
-			if (y > stageRef.stageHeight)
-				removeSelf();
-			
-			if (hitTestObject (target.hit))
-			{
 				
-				naytaKysymys();
-				trace("hitt");
-				removeSelf();
-			
+				
+				if (y > stageRef.stageHeight)
+					removeSelf();
+				
+				if (hitTestObject (target.hit))
+				{
+					PublicVariables.pause = true;
+					naytaKysymys();
+					trace("hitt");
+					removeSelf();
+				
+				}
+				
+				if (PublicVariables.lifeAmount < 0)
+				{
+					removeEventListener(Event.ENTER_FRAME, loop);
+					removeSelf();
+				}
 			}
-			
-			if (PublicVariables.lifeAmount < 0)
-			{
-				removeEventListener(Event.ENTER_FRAME, loop);
-				removeSelf();
-			}
-			
 		}
 		private function naytaKysymys():void
 		{
-			kysymysikkuna = new KysymysIkkuna();
+			kysymysikkuna = new KysymysIkkuna(stageRef);
 			if(kysymysikkuna)
 			{
 				trace("kysymys")
-				stage.addChild(kysymysikkuna);
+				stageRef.addChild(kysymysikkuna);
+				
 			}
 		}
 		

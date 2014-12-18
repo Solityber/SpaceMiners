@@ -5,6 +5,7 @@ package Pelijuttuja.asscript
 	import flash.display.MovieClip;
 	import flash.display.Stage;
 	import flash.events.Event;
+	import flash.text.TextField;
 	
 	public class Avaruus extends MovieClip
 	{
@@ -12,7 +13,9 @@ package Pelijuttuja.asscript
 		public var myStage:Stage;
 		public var pelinalus:PelinAlus;
 		private var numStars:int = 80;
-		private var tietopalkki = new TietoPalkki();
+		private var tietopalkki = new TietoPalkki(myStage);
+		private var mediumHealth = new MediumHealth();
+		private var lowHealth = new LowHealth();
 		
 		public function Avaruus(stage:Stage) : void
 		{
@@ -33,44 +36,47 @@ package Pelijuttuja.asscript
 			
 			private function loop(e:Event) : void
 			{
-				if (Math.floor(Math.random() * 90) == 5)
+				if(!PublicVariables.pause)
 				{
-					var enemy:Meteor = new Meteor(myStage, pelinalus);
+					if (Math.floor(Math.random() * 90) == 5)
+					{
+						var enemy:Meteor = new Meteor(myStage, pelinalus);
+						
+						enemy.addEventListener(Event.REMOVED_FROM_STAGE, removeEnemy, false, 0, true);
+						
+						PublicVariables.meteorList.push(enemy);
+						
+						myStage.addChild(enemy);
+					}
 					
-					enemy.addEventListener(Event.REMOVED_FROM_STAGE, removeEnemy, false, 0, true);
+					if (Math.floor(Math.random() * 800) == 1)
+					{
+						var lappu:KysymysLappu = new KysymysLappu(myStage, pelinalus);
+						
+						lappu.addEventListener(Event.REMOVED_FROM_STAGE, removeLappu, false, 0, true);
+						
+						PublicVariables.kysymyslappuList.push(lappu);
+						
+						myStage.addChild(lappu);
+					}
+					if (PublicVariables.lifeAmount < 2)
+					{
+						this.addChild(mediumHealth);
+					}
 					
-					PublicVariables.meteorList.push(enemy);
+					if (PublicVariables.lifeAmount < 1)
+					{
+						this.addChild(lowHealth);
+						removeChild(mediumHealth);
+					}
 					
-					myStage.addChild(enemy);
+					if (PublicVariables.lifeAmount < 0)
+					{
+						PublicVariables.mainClass.naytaPelinNakyma();
+						removeEventListener(Event.ENTER_FRAME, loop);	
+						this.parent.removeChild(this);
+					}
 				}
-				
-				if (Math.floor(Math.random() * 800) == 1)
-				{
-					var lappu:KysymysLappu = new KysymysLappu(myStage, pelinalus);
-					
-					lappu.addEventListener(Event.REMOVED_FROM_STAGE, removeLappu, false, 0, true);
-					
-					PublicVariables.kysymyslappuList.push(lappu);
-					
-					myStage.addChild(lappu);
-				}
-				if (PublicVariables.lifeAmount < 2)
-				{
-					
-				}
-				
-				if (PublicVariables.lifeAmount < 1)
-				{
-					
-				}
-				
-				if (PublicVariables.lifeAmount < 0)
-				{
-					PublicVariables.mainClass.naytaPelinNakyma();
-					removeEventListener(Event.ENTER_FRAME, loop);	
-					this.parent.removeChild(this);
-				}
-					
 				
 			}
 			
