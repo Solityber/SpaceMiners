@@ -14,6 +14,7 @@ package Pelijuttuja.asscript
 		public var buttonWrong:ButtonWrong = new ButtonWrong();
 		public var correct:Correct;
 		public var wrong:Wrong;
+		public var points:int = 100;
 		
 		public function KysymysIkkuna(stageRaf:Stage)
 		{
@@ -36,6 +37,7 @@ package Pelijuttuja.asscript
 			correct = new Correct(this);
 			addChild(correct);
 			isRight = true;
+			PublicVariables.addGold(points);
 		}
 		
 		public function Destroy():void

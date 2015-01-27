@@ -14,7 +14,7 @@ package Pelijuttuja.asscript
 		private var vy:Number = 3;
 		private var target:PelinAlus;
 		
-		public var points:int = 10;
+		public var points:int = 5;
 		
 		
 		
@@ -77,7 +77,7 @@ package Pelijuttuja.asscript
 		
 		public function takeHit() : void
 		{
-			PublicVariables.addGold(10);
+			PublicVariables.addGold(points);
 			removeSelf();
 		}
 	}
