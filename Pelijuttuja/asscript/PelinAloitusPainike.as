@@ -4,8 +4,7 @@ package Pelijuttuja.asscript
 	
 	public class PelinAloitusPainike extends MovieClip
 	{
-		
-		
+			
 		public function PelinAloitusPainike()
 		{
 			super();

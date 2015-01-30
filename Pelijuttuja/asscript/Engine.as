@@ -12,6 +12,7 @@ package Pelijuttuja.asscript
 		public var aloitus:PelinAloitusNakyma;
 		public var peli:PelinNakyma;
 		public var ohje:PelinOhjeet;
+		public var tekijat:PelinTekijat;
 		public var maatausta:Maatausta;
 		public var avaruus:Avaruus;
 		private var numStars:int = 60;
@@ -26,6 +27,7 @@ package Pelijuttuja.asscript
 			naytaPelinAloitusNakyma();
 			
 		}
+		
 		
 		public function naytaPelinAloitusNakyma()
 		{	
@@ -52,6 +54,24 @@ package Pelijuttuja.asscript
 			if(ohje){
 				trace("ohje")
 				addChild(ohje)
+			}
+		}
+		
+		
+		public function naytaPelinTekijat()
+		{
+			tekijat = new PelinTekijat(stage,this);
+			if(tekijat){
+				trace("tekijat")
+				addChild(tekijat)
+			}
+		}
+		
+		public function poistaPelinTekijat()
+		{
+			if(tekijat){
+				trace("poista tekijat")
+				removeChild(tekijat)
 			}
 		}
 		

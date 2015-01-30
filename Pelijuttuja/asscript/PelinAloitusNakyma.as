@@ -16,6 +16,7 @@ package Pelijuttuja.asscript
 		public var mainClass:Engine;
 		public var aloitusPainike:PelinAloitusPainike = new PelinAloitusPainike();
 		public var ohjeetpainike:PelinOhjeetPainike = new PelinOhjeetPainike();
+		public var tekijatPainike:TekijatPainike = new TekijatPainike();
 		private var poistunappi:poistu = new poistu();
 		private var tausta:PelinTausta = new PelinTausta();
 		
@@ -27,11 +28,13 @@ package Pelijuttuja.asscript
 			this.addChild(tausta);
 			this.addChild(ohjeetpainike);
 			this.addChild(aloitusPainike);
+			this.addChild(tekijatPainike);
 			
 			
 			
 			aloitusPainike.addEventListener(MouseEvent.CLICK, AloitapelipainikePainettu);
 			ohjeetpainike.addEventListener(MouseEvent.CLICK, OhjeetpelipainikePainettu);
+			tekijatPainike.addEventListener(MouseEvent.CLICK, TekijatPainikePainettu);
 		}
 		public function AloitapelipainikePainettu(event:MouseEvent)
 		{
@@ -42,6 +45,10 @@ package Pelijuttuja.asscript
 		{
 			mainClass.naytaPelinOhjeet();
 			
+		}
+		public function TekijatPainikePainettu(event:MouseEvent)
+		{
+			mainClass.naytaPelinTekijat();
 		}
 	}
 }
