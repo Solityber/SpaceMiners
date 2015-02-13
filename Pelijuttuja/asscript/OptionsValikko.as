@@ -18,19 +18,43 @@ package Pelijuttuja.asscript
 		{
 			addChild(options);
 			addChild(tekijatpainike);
+			{
 			tekijatpainike.x = stage.stageWidth/2-tekijatpainike.width/2;
 			tekijatpainike.y = -tekijatpainike.height/2;
+			}
 			addChild(takaisin);
+			{
 			takaisin.x = stage.stageWidth/2-takaisin.width/2;
-			takaisin.y = -takaisin.height/2+takaisin.height*1.5;
+			takaisin.y = stage.stageHeight/2-takaisin.height/2+takaisin.height*2;
+			}
 				
 			tekijatpainike.addEventListener(MouseEvent.CLICK, tekijatPainettu);	
+			takaisin.addEventListener(MouseEvent.CLICK, TakaisinPainettu);
 			
 		}
 		
 		public function tekijatPainettu(event:MouseEvent)
 		{
 			addChild(tekijatruutu);
+			addChild(takaisin);
+			{
+				takaisin.x = 0;
+				takaisin.y = 0;
+			}
+			
+		}
+			
+		public function TakaisinPainettu(event:MouseEvent)
+		{
+			if(contains(tekijatruutu))
+			{
+				removeChild(tekijatruutu);
+				
+				takaisin.x = stage.stageWidth/2-takaisin.width/2;
+				takaisin.y = stage.stageHeight/2-takaisin.height/2+takaisin.height*2;
+			}
+			else
+				this.parent.removeChild(this);
 		}
 	}
 }

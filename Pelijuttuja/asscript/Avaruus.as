@@ -1,11 +1,15 @@
 package Pelijuttuja.asscript
 {
 	import Pelijuttuja.asscript.poistu;
+	import Pelijuttuja.asscript.KeyObject;
 	
 	import flash.display.MovieClip;
 	import flash.display.Stage;
 	import flash.events.Event;
+	import flash.events.KeyboardEvent;
+	import flash.events.MouseEvent;
 	import flash.text.TextField;
+	import flash.ui.Keyboard;
 	
 	public class Avaruus extends MovieClip
 	{
@@ -16,6 +20,10 @@ package Pelijuttuja.asscript
 		private var tietopalkki = new TietoPalkki(myStage);
 		private var mediumHealth = new MediumHealth();
 		private var lowHealth = new LowHealth();
+		private var optionsbutton:OptionsBtn;
+		private var options:OptionsValikko
+		private var key:KeyObject;
+		
 		
 		public function Avaruus(stage:Stage) : void
 		{
@@ -24,13 +32,18 @@ package Pelijuttuja.asscript
 				this.addChild(new Star(stage));
 			}
 			myStage = stage;
+			key = new KeyObject(myStage);
+			optionsbutton = new OptionsBtn();
 			pelinalus=new PelinAlus(myStage);
 			pelinalus.x = myStage.stageWidth/2;
 			pelinalus.y = myStage.stageHeight/2;
 			this.addChild(pelinalus);
 			this.addChild(tietopalkki);
+			this.addChild(optionsbutton);
 			
 			addEventListener(Event.ENTER_FRAME, loop, false, 0, true);
+			optionsbutton.addEventListener(MouseEvent.CLICK, OptionsPainettu);
+			
 
 		}
 			
@@ -76,6 +89,14 @@ package Pelijuttuja.asscript
 						removeEventListener(Event.ENTER_FRAME, loop);	
 						this.parent.removeChild(this);
 					}
+					if (key.isDown(Keyboard.LEFT)){
+						options = new OptionsValikko(myStage, mainClass);
+						if(options)
+						{
+							trace("Options")
+							stage.addChild(options);
+						}
+					}
 				}
 				
 			}
@@ -97,6 +118,15 @@ package Pelijuttuja.asscript
 			PublicVariables.meteorList.splice(PublicVariables.meteorList.indexOf(e.currentTarget), 1);
 			
 		  
+		}
+		public function OptionsPainettu(event:MouseEvent)
+		{
+			options = new OptionsValikko(myStage, mainClass);
+			if(options)
+			{
+				trace("Options")
+				stage.addChild(options);
+			}
 		}
 	}
 }
