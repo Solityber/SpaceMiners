@@ -1,7 +1,6 @@
 package Pelijuttuja.asscript
 {
 	import Pelijuttuja.asscript.poistu;
-	
 	import flash.display.MovieClip;
 	import flash.display.Stage;
 	import flash.events.MouseEvent;

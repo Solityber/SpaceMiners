@@ -11,12 +11,13 @@ package Pelijuttuja.asscript
 	{
 		public var mainClass:Engine;
 		private var maatausta:Maatausta = new Maatausta();
-		private var poistunappi:poistu = new poistu();
 		public var laukaisuAlusta:Laukaisualusta;
 		public var kaivuuAlus:Kaivuualus;
 		public var myStage:Stage
 		private var tietopalkki:TietoPalkki;
 		public var avaruus:Avaruus;
+		private var optionsbutton:OptionsBtn;
+		private var options:OptionsValikko
 	
 		public function PelinNakyma(stage:Stage, engine:Engine)
 		{
@@ -24,20 +25,29 @@ package Pelijuttuja.asscript
 			mainClass = engine;
 			myStage = stage;
 			tietopalkki = new TietoPalkki(myStage);
-			
+			optionsbutton = new OptionsBtn();
 			kaivuuAlus=new Kaivuualus(myStage);
 			laukaisuAlusta= new Laukaisualusta(myStage);
 			this.addChild(maatausta);
 			this.addChild(tietopalkki);
-			this.addChild(poistunappi);
 			this.addChild(kaivuuAlus);
 			this.addChild(laukaisuAlusta);
+			this.addChild(optionsbutton);
 			kaivuuAlus.x = myStage.stageWidth/2;
 			kaivuuAlus.y = myStage.stageHeight/2;
 			
 		
-			poistunappi.addEventListener(MouseEvent.CLICK, poistupelipainikePainettu);
 			laukaisuAlusta.addEventListener(MouseEvent.CLICK, karttapelipainikePainettu);
+			optionsbutton.addEventListener(MouseEvent.CLICK, OptionsPainettu);
+		}
+		public function OptionsPainettu(event:MouseEvent)
+		{
+			options = new OptionsValikko(myStage, mainClass);
+			if(options)
+			{
+				trace("Options")
+				stage.addChild(options);
+			}
 		}
 		public function karttapelipainikePainettu(event:MouseEvent)
 		{
@@ -46,7 +56,6 @@ package Pelijuttuja.asscript
 			this.removeChild(maatausta);
 			this.removeChild(kaivuuAlus);
 			this.removeChild(laukaisuAlusta);
-			this.removeChild(poistunappi);
 			this.removeChild(tietopalkki);
 			PublicVariables.lifeAmount = 2;
 		}
@@ -60,17 +69,11 @@ package Pelijuttuja.asscript
 					stage.addChild(avaruus);
 				}
 		}
-		public function poistupelipainikePainettu(event:MouseEvent)
-		{
-			trace("poistupelipainikePainettu")
-			poistaMaatausta();
-		}
-		
 		public function poistaMaatausta()
 		{
 			trace("poista maatausta")
 			
-			this.removeChild(poistunappi);
+			
 			this.removeChild(maatausta);
 			this.removeChild(kaivuuAlus);
 			this.removeChild(laukaisuAlusta);
