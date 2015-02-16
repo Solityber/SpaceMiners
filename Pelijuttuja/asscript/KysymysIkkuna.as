@@ -27,17 +27,21 @@ package Pelijuttuja.asscript
 		
 		public function OikeinNappiPainettu(event:MouseEvent)
 		{
+			
 			wrong = new Wrong(this);
 			addChild(wrong);
 			isRight = false;
+			stage.frameRate = 60;
 		}
 		
 		public function VaarinNappiPainettu(event:MouseEvent)
 		{
+			
 			correct = new Correct(this);
 			addChild(correct);
 			isRight = true;
 			PublicVariables.addGold(points);
+			stage.frameRate = 60;
 		}
 		
 		public function Destroy():void

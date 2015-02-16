@@ -17,6 +17,9 @@ package Pelijuttuja.asscript
 			this.addChild(tekijat);
 			this.addChild(poistunappi);
 			
+			poistunappi.x = 17;
+			poistunappi.y = 11;
+			
 			poistunappi.addEventListener(MouseEvent.CLICK, poistupelipainikePainettu);
 		}
 		

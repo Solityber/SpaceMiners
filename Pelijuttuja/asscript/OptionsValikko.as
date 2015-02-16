@@ -12,24 +12,30 @@ package Pelijuttuja.asscript
 		private var tekijatpainike:TekijatPainike = new TekijatPainike();
 		private var takaisin:poistu = new poistu();
 		private var tekijatruutu:TekijatRuutu = new TekijatRuutu();
+		private var planeetalleBtn:PlaneetalleBtn = new PlaneetalleBtn();
 		
 
 		public function OptionsValikko(stage:Stage, engine:Engine)
 		{
+			mainClass = engine;
+			
 			addChild(options);
 			addChild(tekijatpainike);
-			{
-			tekijatpainike.x = stage.stageWidth/2-tekijatpainike.width/2;
-			tekijatpainike.y = -tekijatpainike.height/2;
-			}
+			addChild(planeetalleBtn);
 			addChild(takaisin);
-			{
+			
+			tekijatpainike.x = stage.stageWidth/2-tekijatpainike.width/2;
+			tekijatpainike.y = stage.stageHeight/2-tekijatpainike.height/2;
+			
 			takaisin.x = stage.stageWidth/2-takaisin.width/2;
-			takaisin.y = stage.stageHeight/2-takaisin.height/2+takaisin.height*2;
-			}
+			takaisin.y = stage.stageHeight/2-takaisin.height/2-takaisin.height*2;
+			
+			planeetalleBtn.x = stage.stageWidth/2-planeetalleBtn.width/2;
+			planeetalleBtn.y = stage.stageHeight/2-planeetalleBtn.height/2+planeetalleBtn.height*2;
 				
 			tekijatpainike.addEventListener(MouseEvent.CLICK, tekijatPainettu);	
 			takaisin.addEventListener(MouseEvent.CLICK, TakaisinPainettu);
+			planeetalleBtn.addEventListener(MouseEvent.CLICK, planetBack);
 			
 		}
 		
@@ -38,23 +44,36 @@ package Pelijuttuja.asscript
 			addChild(tekijatruutu);
 			addChild(takaisin);
 			{
-				takaisin.x = 0;
-				takaisin.y = 0;
+				takaisin.x = 17;
+				takaisin.y = 11;
 			}
 			
+		}
+		
+		public function  planetBack(event:MouseEvent)
+		{
+			//stage.frameRate = 60;
+			//PublicVariables.mainClass.peli.poistaAvaruus();
+			//this.parent.removeChild(this);
 		}
 			
 		public function TakaisinPainettu(event:MouseEvent)
 		{
+			
 			if(contains(tekijatruutu))
 			{
 				removeChild(tekijatruutu);
 				
+				
 				takaisin.x = stage.stageWidth/2-takaisin.width/2;
-				takaisin.y = stage.stageHeight/2-takaisin.height/2+takaisin.height*2;
+				takaisin.y = stage.stageHeight/2-takaisin.height/2-takaisin.height*2;
+				
 			}
 			else
+			{
+				stage.frameRate=60;
 				this.parent.removeChild(this);
+			}
 		}
 	}
 }

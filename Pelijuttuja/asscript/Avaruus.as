@@ -89,14 +89,7 @@ package Pelijuttuja.asscript
 						removeEventListener(Event.ENTER_FRAME, loop);	
 						this.parent.removeChild(this);
 					}
-					if (key.isDown(Keyboard.LEFT)){
-						options = new OptionsValikko(myStage, mainClass);
-						if(options)
-						{
-							trace("Options")
-							stage.addChild(options);
-						}
-					}
+					
 				}
 				
 			}
@@ -124,6 +117,7 @@ package Pelijuttuja.asscript
 			options = new OptionsValikko(myStage, mainClass);
 			if(options)
 			{
+				stage.frameRate = 0;
 				trace("Options")
 				stage.addChild(options);
 			}

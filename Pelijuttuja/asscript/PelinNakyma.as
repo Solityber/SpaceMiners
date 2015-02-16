@@ -62,12 +62,20 @@ package Pelijuttuja.asscript
 		
 		private function naytaAvaruus():void
 		{
-				avaruus = new Avaruus(myStage);
-				if(avaruus)
-				{
-					trace("avaruus")
-					stage.addChild(avaruus);
-				}
+			avaruus = new Avaruus(myStage);
+			if(avaruus)
+			{
+				trace("avaruus")
+				stage.addChild(avaruus);
+			}
+		}
+		public function poistaAvaruus():void
+		{
+			if(avaruus)
+			{
+				trace("avaruus")
+				stage.removeChild(avaruus);
+			}
 		}
 		public function poistaMaatausta()
 		{

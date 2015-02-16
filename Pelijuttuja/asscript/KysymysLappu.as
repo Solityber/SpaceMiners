@@ -49,7 +49,7 @@ package Pelijuttuja.asscript
 				
 				if (hitTestObject (target.hit))
 				{
-					PublicVariables.pause = true;
+					stage.frameRate=0;
 					naytaKysymys();
 					trace("hitt");
 					removeSelf();
@@ -123,6 +123,7 @@ package Pelijuttuja.asscript
 		public function takeHit():void
 		{
 			stage.frameRate = 0;
+			PublicVariables.pause = true;
 		}
 	}
 }

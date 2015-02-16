@@ -30,6 +30,12 @@ package Pelijuttuja.asscript
 			this.addChild(aloitusPainike);
 			this.addChild(tekijatPainike);
 			
+			tekijatPainike.y = stage.stageHeight/2 -tekijatPainike.height/2;
+			
+			aloitusPainike.y = tekijatPainike.y -aloitusPainike.height*1.5;
+			
+			ohjeetpainike.y = tekijatPainike.y +ohjeetpainike.height*1.5;
+			
 			
 			
 			aloitusPainike.addEventListener(MouseEvent.CLICK, AloitapelipainikePainettu);
