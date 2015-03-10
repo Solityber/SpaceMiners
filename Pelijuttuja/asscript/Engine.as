@@ -18,6 +18,7 @@ package Pelijuttuja.asscript
 		private var numStars:int = 60;
 		public var meteorList:Array = new Array();
 		public var kysymyslappuList:Array = new Array();
+		public var optionsValikko:OptionsValikko;
 		
 		
 		public function Engine()
@@ -32,6 +33,11 @@ package Pelijuttuja.asscript
 		public function naytaPelinAloitusNakyma()
 		{	
 			aloitus = new PelinAloitusNakyma(this, stage)
+			
+			if(avaruus){
+				removeChild(avaruus);
+				avaruus=null;
+			}
 			if(peli){
 				removeChild(peli);
 				peli = null;
@@ -44,8 +50,14 @@ package Pelijuttuja.asscript
 			peli = new PelinNakyma(stage,this);
 			if(aloitus){
 				trace("pelaa")
-				addChild(peli)
+				removeChild(aloitus)
+				aloitus=null;
 			}
+			if(optionsValikko){
+				removeChild(optionsValikko);
+				optionsValikko=null;		
+			}
+			addChild(peli);
 		}
 		
 		public function naytaPelinOhjeet()
@@ -74,6 +86,35 @@ package Pelijuttuja.asscript
 				removeChild(tekijat)
 			}
 		}
+		
+		public function naytaAvaruus()
+		{
+			if(aloitus){
+				trace("nautaAvaruus")
+				removeChild(aloitus);
+				aloitus=null;
+			}
+			avaruus=new Avaruus(this,stage);
+			addChild(avaruus);
+		}
+		
+		public function naytaOptionsValikko()
+		{
+			if(avaruus){
+				trace("poistaAloitus")
+				removeChild(avaruus);
+				avaruus=null;
+			}
+			if(aloitus){
+				trace("poistaAloitus")
+				removeChild(aloitus);
+				aloitus=null;
+			}
+			optionsValikko=new OptionsValikko(this,stage);
+			addChild(optionsValikko);
+		}
+		
+		
 		
 		public function poistaOhjeet()
 		{

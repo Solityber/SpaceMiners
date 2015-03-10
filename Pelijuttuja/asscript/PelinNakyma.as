@@ -42,12 +42,13 @@ package Pelijuttuja.asscript
 		}
 		public function OptionsPainettu(event:MouseEvent)
 		{
-			options = new OptionsValikko(myStage, mainClass);
+			/*options = new OptionsValikko(myStage, mainClass);
 			if(options)
 			{
 				trace("Options")
 				stage.addChild(options);
-			}
+			}*/
+			mainClass.naytaOptionsValikko()
 		}
 		public function karttapelipainikePainettu(event:MouseEvent)
 		{
@@ -62,12 +63,7 @@ package Pelijuttuja.asscript
 		
 		private function naytaAvaruus():void
 		{
-			avaruus = new Avaruus(myStage);
-			if(avaruus)
-			{
-				trace("avaruus")
-				stage.addChild(avaruus);
-			}
+			mainClass.naytaAvaruus();
 		}
 		public function poistaAvaruus():void
 		{

@@ -15,7 +15,7 @@ package Pelijuttuja.asscript
 		private var planeetalleBtn:PlaneetalleBtn = new PlaneetalleBtn();
 		
 
-		public function OptionsValikko(stage:Stage, engine:Engine)
+		public function OptionsValikko(engine:Engine,stage:Stage)
 		{
 			mainClass = engine;
 			
@@ -52,9 +52,9 @@ package Pelijuttuja.asscript
 		
 		public function  planetBack(event:MouseEvent)
 		{
-			//stage.frameRate = 60;
-			//PublicVariables.mainClass.peli.poistaAvaruus();
-			//this.parent.removeChild(this);
+			stage.frameRate=60;
+			
+			mainClass.naytaPelinAloitusNakyma()
 		}
 			
 		public function TakaisinPainettu(event:MouseEvent)
@@ -72,6 +72,7 @@ package Pelijuttuja.asscript
 			else
 			{
 				stage.frameRate=60;
+				mainClass.naytaAvaruus();
 				this.parent.removeChild(this);
 			}
 		}

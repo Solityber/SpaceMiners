@@ -1,7 +1,7 @@
 package Pelijuttuja.asscript
 {
-	import Pelijuttuja.asscript.poistu;
 	import Pelijuttuja.asscript.KeyObject;
+	import Pelijuttuja.asscript.poistu;
 	
 	import flash.display.MovieClip;
 	import flash.display.Stage;
@@ -23,10 +23,13 @@ package Pelijuttuja.asscript
 		private var optionsbutton:OptionsBtn;
 		private var options:OptionsValikko
 		private var key:KeyObject;
+		private var enemy:Meteor;
+		private var lappu:KysymysLappu;
 		
 		
-		public function Avaruus(stage:Stage) : void
+		public function Avaruus(passedClass:Engine,stage:Stage) : void
 		{
+			mainClass = passedClass;
 			for (var i:int = 0; i < numStars; i++)
 			{
 				this.addChild(new Star(stage));
@@ -53,7 +56,7 @@ package Pelijuttuja.asscript
 				{
 					if (Math.floor(Math.random() * 90) == 5)
 					{
-						var enemy:Meteor = new Meteor(myStage, pelinalus);
+						enemy = new Meteor(myStage, pelinalus);
 						
 						enemy.addEventListener(Event.REMOVED_FROM_STAGE, removeEnemy, false, 0, true);
 						
@@ -64,7 +67,7 @@ package Pelijuttuja.asscript
 					
 					if (Math.floor(Math.random() * 800) == 1)
 					{
-						var lappu:KysymysLappu = new KysymysLappu(myStage, pelinalus);
+						lappu = new KysymysLappu(myStage, pelinalus);
 						
 						lappu.addEventListener(Event.REMOVED_FROM_STAGE, removeLappu, false, 0, true);
 						
@@ -114,13 +117,15 @@ package Pelijuttuja.asscript
 		}
 		public function OptionsPainettu(event:MouseEvent)
 		{
-			options = new OptionsValikko(myStage, mainClass);
+			/*options = new OptionsValikko(myStage, mainClass);
 			if(options)
 			{
 				stage.frameRate = 0;
 				trace("Options")
 				stage.addChild(options);
-			}
+			}*/
+			stage.frameRate=0;
+			mainClass.naytaOptionsValikko();
 		}
 	}
 }
